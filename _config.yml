@@ -25,7 +25,7 @@ social:
     url: "https://www.instagram.com/home_grownnz?igsh=YW1mdXhvemc3NXVt&utm_source=qr"
 
 # Theme settings
-theme: jekyl-acency
+theme: jekyll-acency
 
 # Build settings
 markdown: kramdown
