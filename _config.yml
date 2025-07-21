@@ -1,65 +1,74 @@
-```yaml
 # Site settings
+
 title: Homegrown
 email: homegrownorganicsnz@gmail.com
-url: https://homegrownorganics.github.io 
-baseurl: ""  
-description: "Transforming surplus into soul food. Nourishing community, soil, and spirit."
-keywords: "community food, organic produce, food sovereignty, Christchurch, sustainable"
+url: https://homegrownorganics.github.io
+baseurl: “”  
+description: “Transforming surplus into soul food. Nourishing community, soil, and spirit.”
+keywords: “community food, organic produce, food sovereignty, Christchurch, sustainable”
 author: Homegrown Collective
 lang: en
 locale: en_US
 
 # Color settings
+
 color:
-  primary: "#667eea"
-  primary-dark: "#764ba2"
-  secondary: "#28a745"
-  secondary-dark: "#1e7e34"
-  muted: "#777777"
-  danger: "#e74c3c"
+primary: “#667eea”
+primary-dark: “#764ba2”
+secondary: “#28a745”
+secondary-dark: “#1e7e34”
+muted: “#777777”
+danger: “#e74c3c”
 
 # Social networks
+
 social:
-  - title: "instagram"
-    url: "https://www.instagram.com/home_grownnz?igsh=YW1mdXhvemc3NXVt&utm_source=qr"
+
+- title: “instagram”
+  url: “https://www.instagram.com/home_grownnz?igsh=YW1mdXhvemc3NXVt&utm_source=qr”
 
 # Theme settings
-theme: jekyll-acency
+
+remote_theme: daattali/beautiful-jekyll
 
 # Build settings
+
 markdown: kramdown
 highlighter: rouge
 permalink: pretty
 plugins:
-  - jekyll-sitemap
-  - jekyll-feed
-  - jekyll-seo-tag
+
+- jekyll-sitemap
+- jekyll-feed
+- jekyll-seo-tag
 
 # Navigation
+
 nav:
-  - title: "How It Works"
-    section: "how-it-works"
-  - title: "Our Story"
-    section: "about"
-  - title: "Want to Help?"
-    section: "team"
-  - title: "Contact"
-    section: "contact"
+
+- title: “How It Works”
+  section: “how-it-works”
+- title: “Our Story”
+  section: “about”
+- title: “Want to Help?”
+  section: “team”
+- title: “Contact”
+  section: “contact”
 
 # Header settings
+
 header:
-  title: "Welcome to Homegrown"
-  text: "Transforming surplus into soul food"
-  button: "Learn More"
-  buttonlink: "#how-it-works"
+title: “Welcome to Homegrown”
+text: “Transforming surplus into soul food”
+button: “Learn More”
+buttonlink: “#how-it-works”
 
 # Footer settings
+
 footer:
-  legal: "Privacy Policy"
-  social:
-    - url: https://www.instagram.com/home_grownnz
-      icon: "fab fa-instagram"
-  text: "Local food, shared roots."
-  location: "Ōtautahi, Aotearoa"
-```
+legal: “Privacy Policy”
+social:
+- url: https://www.instagram.com/home_grownnz
+icon: “fab fa-instagram”
+text: “Local food, shared roots.”
+location: “Ōtautahi, Aotearoa”
