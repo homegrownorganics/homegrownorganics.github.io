@@ -8,28 +8,10 @@ description: “Transforming surplus into soul food. Nourishing community, soil,
 keywords: “community food, organic produce, food sovereignty, Christchurch, sustainable”
 author: Homegrown Collective
 lang: en
-locale: en_US
-
-# Color settings
-
-color:
-primary: “#667eea”
-primary-dark: “#764ba2”
-secondary: “#28a745”
-secondary-dark: “#1e7e34”
-muted: “#777777”
-danger: “#e74c3c”
-
-# Social networks
-
-social:
-
-- title: “instagram”
-  url: “https://www.instagram.com/home_grownnz?igsh=YW1mdXhvemc3NXVt&utm_source=qr”
 
 # Theme settings
 
-remote_theme: raviriley/agency-jekyll-theme
+remote_theme: chrisrhymes/bulma-clean-theme
 
 # Build settings
 
@@ -43,33 +25,11 @@ plugins:
 - jekyll-seo-tag
 - jekyll-remote-theme
 
-# Navigation
-
-nav:
-
-- title: “How It Works”
-  section: “how-it-works”
-- title: “Our Story”
-  section: “about”
-- title: “Want to Help?”
-  section: “team”
-- title: “Contact”
-  section: “contact”
-
-# Header settings
-
-header:
-title: “Welcome to Homegrown”
-text: “Transforming surplus into soul food”
-button: “Learn More”
-buttonlink: “#how-it-works”
-
 # Footer settings
 
-footer:
-legal: “Privacy Policy”
-social:
-- url: https://www.instagram.com/home_grownnz
-icon: “fab fa-instagram”
-text: “Local food, shared roots.”
-location: “Ōtautahi, Aotearoa”
+footer_menu: main
+
+# Social media
+
+github_username: homegrownorganics
+instagram_username: home_grownnz
