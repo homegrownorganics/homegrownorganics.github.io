@@ -261,6 +261,78 @@
             opacity: 0.9;
         }
 
+        .location-card {
+            background: var(--sage-light);
+            color: var(--warm-white);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(74, 92, 58, 0.2);
+        }
+
+        .location-card h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            color: var(--warm-white);
+        }
+
+        .location-details p {
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .update-note {
+            text-align: center;
+            font-style: italic;
+            color: var(--sage-medium);
+            margin-top: 2rem;
+        }
+
+        .wishlist-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .wish-item {
+            background: var(--cream);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid var(--sage-light);
+        }
+
+        .wish-item h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            color: var(--sage-dark);
+        }
+
+        .wish-item ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .wish-item li {
+            padding: 0.3rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .wish-item li::before {
+            content: '•';
+            color: var(--sage-medium);
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+            top: -0.2rem;
+        }
+
         @media (max-width: 768px) {
             .hero {
                 padding: 2rem 0;
@@ -278,6 +350,10 @@
             .contact-links {
                 flex-direction: column;
                 align-items: center;
+            }
+            
+            .wishlist-grid {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -365,12 +441,65 @@
 
     <section class="content-section">
         <div class="container">
+            <h2 class="section-title">Where to Find Us</h2>
+            <div class="story-section">
+                <p>Join us at our soup cooks and pantry drops! Here's where you can find fresh, nourishing soup made from rescued organic produce:</p>
+                
+                <div class="location-card">
+                    <h4>🍲 First Soup Cook & Pantry Drop</h4>
+                    <div class="location-details">
+                        <p><strong>Climate Action Campus</strong></p>
+                        <p>📍 24 Cowlishaw St, Christchurch</p>
+                        <p>🗓️ <em>Date & time to be announced</em></p>
+                    </div>
+                </div>
+                
+                <p class="update-note"><em>More locations and dates will be added here as we expand our community reach. Stay tuned!</em></p>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">Our Wish List</h2>
+            <div class="story-section">
+                <p>Help us grow from a small-scale operation to something larger and more impactful! We're looking for:</p>
+                
+                <div class="wishlist-grid">
+                    <div class="wish-item">
+                        <h4>🔧 Equipment Needs</h4>
+                        <ul>
+                            <li>Commercial stick blender</li>
+                            <li>Large stainless steel pots</li>
+                            <li>Large ladles</li>
+                            <li>Large wooden spoons</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="wish-item">
+                        <h4>🤝 Partnership & Expertise</h4>
+                        <ul>
+                            <li>Business mentorship to scale our impact</li>
+                            <li>Commercial kitchen space access</li>
+                            <li>Food safety & handling expertise</li>
+                            <li>Logistics and distribution support</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <p>Have something to contribute or know someone who might? We'd love to hear from you!</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="container">
             <h2 class="section-title">Want to Help?</h2>
             <div class="story-section">
                 <p>We're always looking for passionate people to join our movement:</p>
                 <ul>
                     <li><strong>Volunteers</strong> to help with food prep and distribution</li>
-                    <li><strong>Distrubution hubs</strong> to get the food to the world</li>
+                    <li><strong>Distribution hubs</strong> to get the food to the world</li>
                     <li><strong>Community supporters</strong> to spread the word</li>
                 </ul>
             </div>
