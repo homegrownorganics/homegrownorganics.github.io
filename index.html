@@ -166,7 +166,7 @@
         .story-section {
             max-width: 800px;
             margin: 0 auto;
-            text-align: left;
+            text-align: center;
             font-size: 1.1rem;
             line-height: 1.8;
         }
@@ -179,18 +179,23 @@
             list-style: none;
             padding-left: 0;
             margin: 2rem 0;
+            text-align: center;
         }
 
         .story-section li {
             padding: 0.5rem 0;
-            padding-left: 2rem;
             position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            text-align: center;
         }
 
         .story-section li::before {
             content: '🥕';
-            position: absolute;
-            left: 0;
+            margin-right: 0.5rem;
+            flex-shrink: 0;
         }
 
         .contact-section {
@@ -303,6 +308,7 @@
             padding: 2rem;
             border-radius: 15px;
             border: 2px solid var(--sage-light);
+            text-align: center;
         }
 
         .wish-item h4 {
@@ -316,21 +322,24 @@
         .wish-item ul {
             list-style: none;
             padding-left: 0;
+            text-align: center;
         }
 
         .wish-item li {
             padding: 0.3rem 0;
-            padding-left: 1.5rem;
             position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
         }
 
         .wish-item li::before {
-            content: '•';
+            content: '• ';
             color: var(--sage-medium);
             font-size: 1.5rem;
-            position: absolute;
-            left: 0;
-            top: -0.2rem;
+            margin-right: 0.5rem;
+            flex-shrink: 0;
         }
 
         @media (max-width: 768px) {
