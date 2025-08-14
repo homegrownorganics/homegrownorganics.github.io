@@ -460,6 +460,22 @@
         </div>
     </section>
 
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">Our Story</h2>
+            <div class="story-section">
+                <p>Homegrown started from a simple belief: that good food should nourish everyone, and nothing should go to waste. Based in Christchurch, we work directly with local organic farmers to rescue produce that's perfectly good but can't be sold due to cosmetic standards or overproduction.</p>
+                
+                <p>Every week, we transform this rescued food into:</p>
+                <ul>
+                    <li><strong>Nourishing stocks</strong> as a base for our soup</li>
+                    <li><strong>Hearty soups</strong> made with seasonal vegetables</li>
+                    <li><strong>Pantry fillers</strong> stocking community stores, where its needed most</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
     <section id="impact" class="content-section">
         <div class="container">
             <h2 class="section-title">Our Impact</h2>
@@ -475,34 +491,8 @@
                     <div class="value"><span id="kgTotal">-</span> kg</div>
                     <div class="hint">Approximate total</div>
                 </div>
-                <div class="box metric">
-                    <h4>📅 This Week</h4>
-                    <div class="value"><span id="binsWeek">-</span> bins</div>
-                    <div class="hint">Bins rescued</div>
-                </div>
-                <div class="box metric">
-                    <h4>🍲 Soup Shared</h4>
-                    <div class="value"><span id="litresWeek">-</span> L</div>
-                    <div class="hint">This week</div>
-                </div>
             </div>
             <p class="impact-note">*Assumption: <span id="assumptionFull">50 kg ≈ 1 full household green bin</span>. We'll refine as we weigh more.</p>
-        </div>
-    </section>
-
-    <section class="content-section">
-        <div class="container">
-            <h2 class="section-title">Our Story</h2>
-            <div class="story-section">
-                <p>Homegrown started from a simple belief: that good food should nourish everyone, and nothing should go to waste. Based in Christchurch, we work directly with local organic farmers to rescue produce that's perfectly good but can't be sold due to cosmetic standards or overproduction.</p>
-                
-                <p>Every week, we transform this rescued food into:</p>
-                <ul>
-                    <li><strong>Nourishing stocks</strong> as a base for our soup</li>
-                    <li><strong>Hearty soups</strong> made with seasonal vegetables</li>
-                    <li><strong>Pantry fillers</strong> stocking community stores, where its needed most</li>
-                </ul>
-            </div>
         </div>
     </section>
 
@@ -597,8 +587,6 @@
     <script>
         const impact = {
             greenBinsTotal: 8,
-            greenBinsThisWeek: 0,
-            soupLitresThisWeek: 0,
             kgPerGreenBin: 50
         };
 
@@ -607,8 +595,6 @@
             
             document.getElementById('binsTotal').textContent = impact.greenBinsTotal.toLocaleString();
             document.getElementById('kgTotal').textContent = kgTotal.toLocaleString();
-            document.getElementById('binsWeek').textContent = impact.greenBinsThisWeek.toFixed(1);
-            document.getElementById('litresWeek').textContent = impact.soupLitresThisWeek.toLocaleString();
             document.getElementById('assumptionFull').textContent = impact.kgPerGreenBin + ' kg ≈ 1 full household green bin';
         });
     </script>
