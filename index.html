@@ -346,6 +346,24 @@
             top: -0.2rem;
         }
 
+        .metric .value {
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: var(--sage-dark);
+        }
+
+        .metric .hint {
+            margin-top: 0.5rem;
+            font-size: 0.95rem;
+            color: var(--sage-medium);
+        }
+
+        .impact-note {
+            text-align: center;
+            color: var(--sage-medium);
+            margin-top: 1rem;
+        }
+
         @media (max-width: 768px) {
             .hero {
                 padding: 2rem 0;
@@ -439,6 +457,36 @@
                     <p>Building stronger, more resilient communities through shared food</p>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <section id="impact" class="content-section">
+        <div class="container">
+            <h2 class="section-title">Our Impact</h2>
+            <p class="intro-text">Rescued produce, in everyday terms — updated Tuesdays.</p>
+            <div class="columns">
+                <div class="box metric">
+                    <h4>🗑️ Green Bins Rescued</h4>
+                    <div class="value"><span id="binsTotal">-</span> bins</div>
+                    <div class="hint">Total to date</div>
+                </div>
+                <div class="box metric">
+                    <h4>⚖️ Weight Rescued</h4>
+                    <div class="value"><span id="kgTotal">-</span> kg</div>
+                    <div class="hint">Approximate total</div>
+                </div>
+                <div class="box metric">
+                    <h4>📅 This Week</h4>
+                    <div class="value"><span id="binsWeek">-</span> bins</div>
+                    <div class="hint">Bins rescued</div>
+                </div>
+                <div class="box metric">
+                    <h4>🍲 Soup Shared</h4>
+                    <div class="value"><span id="litresWeek">-</span> L</div>
+                    <div class="hint">This week</div>
+                </div>
+            </div>
+            <p class="impact-note">*Assumption: <span id="assumptionFull">50 kg ≈ 1 full household green bin</span>. We'll refine as we weigh more.</p>
         </div>
     </section>
 
@@ -545,6 +593,25 @@
             <p class="footer-tagline">Local food, shared roots. 🌱</p>
         </div>
     </section>
+
+    <script>
+        const impact = {
+            greenBinsTotal: 8,
+            greenBinsThisWeek: 0,
+            soupLitresThisWeek: 0,
+            kgPerGreenBin: 50
+        };
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const kgTotal = impact.greenBinsTotal * impact.kgPerGreenBin;
+            
+            document.getElementById('binsTotal').textContent = impact.greenBinsTotal.toLocaleString();
+            document.getElementById('kgTotal').textContent = kgTotal.toLocaleString();
+            document.getElementById('binsWeek').textContent = impact.greenBinsThisWeek.toFixed(1);
+            document.getElementById('litresWeek').textContent = impact.soupLitresThisWeek.toLocaleString();
+            document.getElementById('assumptionFull').textContent = impact.kgPerGreenBin + ' kg ≈ 1 full household green bin';
+        });
+    </script>
 
 </body>
 </html>
