@@ -1,775 +1,603 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Your complete guide to galleries, street art, studios and creative spaces in Ōtautahi Christchurch, New Zealand's creative capital.">
-  <title>Ōtautahi Christchurch Arts Guide</title>
-  <style>
-    :root {
-      --primary: #1a1a2e;
-      --accent: #e94560;
-      --accent-light: #ff6b6b;
-      --bg: #0f0f1a;
-      --bg-card: #16213e;
-      --text: #eaeaea;
-      --text-muted: #a0a0a0;
-    }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Segoe UI', system-ui, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.7;
-    }
-    a { color: var(--accent-light); text-decoration: none; transition: color 0.2s; }
-    a:hover { color: var(--accent); }
-    
-    /* Navigation */
-    nav {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: rgba(15, 15, 26, 0.95);
-      backdrop-filter: blur(10px);
-      z-index: 1000;
-      border-bottom: 1px solid rgba(233, 69, 96, 0.2);
-    }
-    .nav-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .logo {
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: var(--text);
-    }
-    .logo span { color: var(--accent); }
-    .nav-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
-    .nav-links a { color: var(--text-muted); font-size: 0.9rem; }
-    .nav-links a:hover { color: var(--accent); }
-    .mobile-menu { display: none; background: none; border: none; color: var(--text); font-size: 1.5rem; cursor: pointer; }
-    
-    /* Hero */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 6rem 2rem 4rem;
-      background: linear-gradient(135deg, var(--bg) 0%, var(--primary) 50%, #0d0d1a 100%);
-      position: relative;
-      overflow: hidden;
-    }
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23e94560' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-    }
-    .hero-content { position: relative; z-index: 1; max-width: 900px; }
-    .hero h1 {
-      font-size: clamp(2.5rem, 6vw, 4.5rem);
-      font-weight: 800;
-      margin-bottom: 1.5rem;
-      background: linear-gradient(135deg, var(--text) 0%, var(--accent-light) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .hero .subtitle {
-      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
-      color: var(--text-muted);
-      margin-bottom: 2rem;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .hero-tags {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-bottom: 2.5rem;
-    }
-    .hero-tag {
-      background: rgba(233, 69, 96, 0.15);
-      border: 1px solid var(--accent);
-      padding: 0.5rem 1.2rem;
-      border-radius: 50px;
-      font-size: 0.9rem;
-      color: var(--accent-light);
-    }
-    .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-    .btn {
-      padding: 1rem 2rem;
-      border-radius: 8px;
-      font-weight: 600;
-      transition: all 0.3s;
-      cursor: pointer;
-    }
-    .btn-primary {
-      background: var(--accent);
-      color: white;
-      border: none;
-    }
-    .btn-primary:hover { background: var(--accent-light); color: white; transform: translateY(-2px); }
-    .btn-secondary {
-      background: transparent;
-      border: 2px solid var(--accent);
-      color: var(--accent-light);
-    }
-    .btn-secondary:hover { background: var(--accent); color: white; }
-    
-    /* Sections */
-    section { padding: 5rem 2rem; max-width: 1200px; margin: 0 auto; }
-    .section-header { text-align: center; margin-bottom: 3rem; }
-    .section-header h2 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-      color: var(--text);
-    }
-    .section-header p { color: var(--text-muted); max-width: 600px; margin: 0 auto; }
-    
-    /* Story section */
-    .story-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-    }
-    .story-card {
-      background: var(--bg-card);
-      border-radius: 16px;
-      padding: 2rem;
-      border: 1px solid rgba(255,255,255,0.05);
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-    .story-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 20px 40px rgba(233, 69, 96, 0.1);
-    }
-    .story-card h3 {
-      color: var(--accent-light);
-      margin-bottom: 1rem;
-      font-size: 1.3rem;
-    }
-    .story-card p { color: var(--text-muted); font-size: 0.95rem; }
-    
-    /* Galleries */
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: 2rem;
-    }
-    .gallery-card {
-      background: var(--bg-card);
-      border-radius: 16px;
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.05);
-      transition: all 0.3s;
-    }
-    .gallery-card:hover { transform: translateY(-5px); border-color: var(--accent); }
-    .gallery-img {
-      height: 200px;
-      background: linear-gradient(135deg, var(--primary), var(--bg));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 3rem;
-    }
-    .gallery-content { padding: 1.5rem; }
-    .gallery-content h3 { margin-bottom: 0.5rem; font-size: 1.2rem; }
-    .gallery-type {
-      display: inline-block;
-      background: rgba(233, 69, 96, 0.2);
-      color: var(--accent-light);
-      padding: 0.25rem 0.75rem;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      margin-bottom: 1rem;
-    }
-    .gallery-content p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem; }
-    .gallery-meta { display: flex; gap: 1rem; flex-wrap: wrap; }
-    .gallery-meta span {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      display: flex;
-      align-items: center;
-      gap: 0.3rem;
-    }
-    
-    /* Street Art */
-    .street-art-intro {
-      background: linear-gradient(135deg, var(--bg-card), var(--primary));
-      border-radius: 20px;
-      padding: 3rem;
-      margin-bottom: 3rem;
-      border: 1px solid rgba(233, 69, 96, 0.2);
-    }
-    .street-art-intro h3 { color: var(--accent-light); margin-bottom: 1rem; font-size: 1.5rem; }
-    .street-art-intro p { color: var(--text-muted); margin-bottom: 1.5rem; }
-    .resource-list { list-style: none; }
-    .resource-list li {
-      padding: 1rem;
-      background: rgba(0,0,0,0.2);
-      border-radius: 8px;
-      margin-bottom: 0.5rem;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-    .resource-list li::before { content: '→'; color: var(--accent); }
-    
-    /* Studios */
-    .studio-tabs {
-      display: flex;
-      gap: 1rem;
-      margin-bottom: 2rem;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    .tab-btn {
-      padding: 0.75rem 1.5rem;
-      border: 2px solid var(--accent);
-      background: transparent;
-      color: var(--text);
-      border-radius: 30px;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-    .tab-btn:hover, .tab-btn.active { background: var(--accent); color: white; }
-    .studio-list { display: grid; gap: 1.5rem; }
-    .studio-item {
-      background: var(--bg-card);
-      border-radius: 12px;
-      padding: 1.5rem;
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 1.5rem;
-      align-items: center;
-      border: 1px solid rgba(255,255,255,0.05);
-    }
-    .studio-icon {
-      width: 60px;
-      height: 60px;
-      background: linear-gradient(135deg, var(--accent), var(--accent-light));
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-    }
-    .studio-info h4 { margin-bottom: 0.3rem; }
-    .studio-info p { color: var(--text-muted); font-size: 0.9rem; }
-    
-    /* Events */
-    .events-timeline { position: relative; padding-left: 2rem; }
-    .events-timeline::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      width: 2px;
-      background: linear-gradient(to bottom, var(--accent), transparent);
-    }
-    .event-item {
-      position: relative;
-      padding: 1.5rem;
-      background: var(--bg-card);
-      border-radius: 12px;
-      margin-bottom: 1.5rem;
-      margin-left: 1rem;
-      border: 1px solid rgba(255,255,255,0.05);
-    }
-    .event-item::before {
-      content: '';
-      position: absolute;
-      left: -1.65rem;
-      top: 2rem;
-      width: 12px;
-      height: 12px;
-      background: var(--accent);
-      border-radius: 50%;
-    }
-    .event-date {
-      display: inline-block;
-      background: var(--accent);
-      color: white;
-      padding: 0.25rem 0.75rem;
-      border-radius: 4px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      margin-bottom: 0.75rem;
-    }
-    .event-item h4 { margin-bottom: 0.5rem; }
-    .event-item p { color: var(--text-muted); font-size: 0.9rem; }
-    
-    /* Community */
-    .community-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-    }
-    .community-card {
-      background: linear-gradient(135deg, var(--bg-card), rgba(233, 69, 96, 0.1));
-      border-radius: 16px;
-      padding: 2rem;
-      text-align: center;
-      border: 1px solid rgba(233, 69, 96, 0.2);
-    }
-    .community-card h4 { color: var(--accent-light); margin-bottom: 1rem; }
-    .community-card p { color: var(--text-muted); font-size: 0.9rem; }
-    
-    /* Resources */
-    .resources-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-    }
-    .resource-card {
-      background: var(--bg-card);
-      border-radius: 16px;
-      padding: 2rem;
-      border-left: 4px solid var(--accent);
-    }
-    .resource-card h4 { margin-bottom: 1rem; color: var(--accent-light); }
-    .resource-card ul { list-style: none; }
-    .resource-card li {
-      padding: 0.75rem 0;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-      color: var(--text-muted);
-      font-size: 0.9rem;
-    }
-    .resource-card li:last-child { border-bottom: none; }
-    
-    /* Footer */
-    footer {
-      background: var(--primary);
-      padding: 4rem 2rem 2rem;
-      margin-top: 4rem;
-      border-top: 1px solid rgba(233, 69, 96, 0.2);
-    }
-    .footer-content {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 3rem;
-    }
-    .footer-section h4 { color: var(--text); margin-bottom: 1rem; }
-    .footer-section p,
-    .footer-section a {
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      display: block;
-      margin-bottom: 0.5rem;
-    }
-    .footer-bottom {
-      max-width: 1200px;
-      margin: 3rem auto 0;
-      padding-top: 2rem;
-      border-top: 1px solid rgba(255,255,255,0.1);
-      text-align: center;
-      color: var(--text-muted);
-      font-size: 0.85rem;
-    }
-    
-    /* Mobile */
-    @media (max-width: 768px) {
-      .nav-links { display: none; }
-      .mobile-menu { display: block; }
-      .nav-links.active {
-        display: flex;
-        flex-direction: column;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: var(--bg);
-        padding: 1rem 2rem;
-        border-bottom: 1px solid rgba(233, 69, 96, 0.2);
-      }
-      .studio-item { grid-template-columns: 1fr; text-align: center; }
-      .studio-icon { margin: 0 auto; }
-      section { padding: 3rem 1rem; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Homegrown</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sage-dark: #4a5c3a;
+            --sage-medium: #6b7c5a;
+            --sage-light: #8fa079;
+            --cream: #f5f3f0;
+            --warm-white: #fdfcfa;
+            --earth-brown: #8b7355;
+            --text-dark: #2d3a26;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--sage-dark) 0%, var(--sage-medium) 100%);
+            color: var(--text-dark);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .hero {
+            background: linear-gradient(rgba(74, 92, 58, 0.85), rgba(107, 124, 90, 0.85)), 
+                        url('https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--cream);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M20 50 Q 50 10 80 50 Q 50 90 20 50" fill="none" stroke="rgba(245,243,240,0.1)" stroke-width="0.5"/></svg>') repeat;
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .logo {
+            width: 240px;
+            height: 240px;
+            margin: 0 auto 0.5rem auto;
+            border-radius: 50%;
+            filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.2));
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 300;
+            letter-spacing: 4px;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero .subtitle {
+            font-size: clamp(1.1rem, 3vw, 1.5rem);
+            font-weight: 300;
+            letter-spacing: 1px;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .hero .tagline {
+            font-style: italic;
+            font-size: 1rem;
+            opacity: 0.8;
+            margin-top: 2rem;
+        }
+
+        .content-section {
+            background: var(--warm-white);
+            padding: 4rem 0;
+        }
+
+        .content-section:nth-child(even) {
+            background: var(--cream);
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 400;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--sage-dark);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '🌱';
+            display: block;
+            font-size: 1.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .intro-text {
+            text-align: center;
+            font-size: 1.3rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            color: var(--earth-brown);
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, var(--sage-light) 0%, var(--sage-light) 100%);
+            background-repeat: no-repeat;
+            background-size: 100% 0.3em;
+            background-position: 0 88%;
+            font-weight: 500;
+        }
+
+        .columns {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .box {
+            background: var(--warm-white);
+            padding: 2.5rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(74, 92, 58, 0.1);
+            transition: all 0.3s ease;
+            border: 2px solid var(--sage-light);
+        }
+
+        .box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(74, 92, 58, 0.2);
+        }
+
+        .box h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            color: var(--sage-dark);
+        }
+
+        .story-section {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .story-section p {
+            margin-bottom: 1.5rem;
+        }
+
+        .story-section ul {
+            list-style: none;
+            padding-left: 0;
+            margin: 2rem 0;
+        }
+
+        .story-section li {
+            padding: 0.5rem 0;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .story-section li::before {
+            content: '🥕';
+            position: absolute;
+            left: 0;
+        }
+
+        .contact-section {
+            background: linear-gradient(135deg, var(--sage-dark), var(--sage-medium));
+            color: var(--cream);
+            text-align: center;
+            padding: 4rem 0;
+        }
+
+        .contact-section .section-title {
+            color: var(--cream);
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .contact-link {
+            color: var(--cream);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 1rem 2rem;
+            border: 2px solid var(--cream);
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-link:hover {
+            background: var(--cream);
+            color: var(--sage-dark);
+            transform: translateY(-2px);
+        }
+
+        .divider {
+            text-align: center;
+            margin: 3rem 0;
+            color: var(--sage-medium);
+        }
+
+        .divider::before {
+            content: '';
+            display: inline-block;
+            width: 60px;
+            height: 1px;
+            background: var(--sage-medium);
+            margin: 0 1rem;
+            vertical-align: middle;
+        }
+
+        .divider::after {
+            content: '';
+            display: inline-block;
+            width: 60px;
+            height: 1px;
+            background: var(--sage-medium);
+            margin: 0 1rem;
+            vertical-align: middle;
+        }
+
+        .footer-tagline {
+            font-style: italic;
+            font-size: 1.2rem;
+            margin-top: 2rem;
+            opacity: 0.9;
+        }
+
+        .location-card {
+            background: var(--sage-light);
+            color: var(--warm-white);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(74, 92, 58, 0.2);
+        }
+
+        .location-card h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            color: var(--warm-white);
+        }
+
+        .location-details p {
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .update-note {
+            text-align: center;
+            font-style: italic;
+            color: var(--sage-medium);
+            margin-top: 2rem;
+        }
+
+        .wishlist-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .wish-item {
+            background: var(--cream);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid var(--sage-light);
+        }
+
+        .wish-item h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            color: var(--sage-dark);
+        }
+
+        .wish-item ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .wish-item li {
+            padding: 0.3rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .wish-item li::before {
+            content: '•';
+            color: var(--sage-medium);
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+            top: -0.2rem;
+        }
+
+        .metric .value {
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: var(--sage-dark);
+        }
+
+        .metric .hint {
+            margin-top: 0.5rem;
+            font-size: 0.95rem;
+            color: var(--sage-medium);
+        }
+
+        .impact-note {
+            text-align: center;
+            color: var(--sage-medium);
+            margin-top: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 2rem 0;
+                min-height: 80vh;
+            }
+            
+            .content-section {
+                padding: 3rem 0;
+            }
+            
+            .columns {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-links {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .wishlist-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .logo {
+                width: 180px;
+                height: 180px;
+            }
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--cream);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+    </style>
 </head>
 <body>
-  <nav>
-    <div class="nav-container">
-      <div class="logo">Ōtautahi <span>Arts</span></div>
-      <div class="nav-links" id="navLinks">
-        <a href="#home">Home</a>
-        <a href="#galleries">Galleries</a>
-        <a href="#street-art">Street Art</a>
-        <a href="#studios">Studios</a>
-        <a href="#events">Events</a>
-        <a href="#community">Community</a>
-        <a href="#resources">Resources</a>
-      </div>
-      <button class="mobile-menu" id="mobileMenu">☰</button>
-    </div>
-  </nav>
-
-  <header class="hero" id="home">
-    <div class="hero-content">
-      <h1>Discover the Arts in Ōtautahi Christchurch</h1>
-      <p class="subtitle">Heritage institutions, experimental contemporary art, and a globally recognised street-art scene—all in a city that chose creativity as part of its rebuild.</p>
-      <div class="hero-tags">
-        <span class="hero-tag">Street Art Capital</span>
-        <span class="hero-tag">Post-Quake Renaissance</span>
-        <span class="hero-tag">Creative Strategy</span>
-      </div>
-      <div class="cta-buttons">
-        <a href="#galleries" class="btn btn-primary">Explore Galleries</a>
-        <a href="#street-art" class="btn btn-secondary">Street Art Map</a>
-      </div>
-    </div>
-  </header>
-
-  <section id="story">
-    <div class="section-header">
-      <h2>Why Christchurch Art Matters</h2>
-      <p>A city transformed by creativity, resilience, and vision</p>
-    </div>
-    <div class="story-grid">
-      <div class="story-card">
-        <h3>🎨 Street Art Capital</h3>
-        <p>After the earthquakes, empty walls and vacant lots became canvases. Groups like Watch This Space now curate and map murals, positioning Christchurch as a global street-art destination with guided tours and a vibrant urban art culture.</p>
-      </div>
-      <div class="story-card">
-        <h3>🏛️ Institutional Backbone</h3>
-        <p>Christchurch Art Gallery Te Puna o Waiwhetū anchors the city as one of Aotearoa's most important public collections, with major exhibitions, archives, and public programmes in a landmark building.</p>
-      </div>
-      <div class="story-card">
-        <h3>📜 Historic Infrastructure</h3>
-        <p>CoCA Toi Moroki, growing from the 1880 Canterbury Society of Arts, continues as a key engine for contemporary art and experimentation, now with community-focused open-call programming.</p>
-      </div>
-      <div class="story-card">
-        <h3>📋 City-Wide Strategy</h3>
-        <p>Toi Ōtautahi frames arts as central to wellbeing, identity, and economy—aiming to make Christchurch "New Zealand's best city to create, explore and experience art".</p>
-      </div>
-      <div class="story-card">
-        <h3>🏰 Heritage Arts Hub</h3>
-        <p>Te Matatiki Toi Ora The Arts Centre—NZ's largest heritage building collection—now houses galleries, museums, studios, cinemas, and markets as a dedicated arts district.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="galleries">
-    <div class="section-header">
-      <h2>Galleries & Museums</h2>
-      <p>From major institutions to independent dealer galleries</p>
-    </div>
-    <div class="gallery-grid">
-      <div class="gallery-card">
-        <div class="gallery-img">🖼️</div>
-        <div class="gallery-content">
-          <span class="gallery-type">Public Museum</span>
-          <h3>Christchurch Art Gallery Te Puna o Waiwhetū</h3>
-          <p>One of Aotearoa's key public collections with free entry, major exhibitions of NZ and international art, strong education programmes, and a landmark glass façade building with nine exhibition areas.</p>
-          <div class="gallery-meta">
-            <span>📍 Central City</span>
-            <span>💰 Free Entry</span>
-            <span>♿ Accessible</span>
-          </div>
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <img src="logo.png" alt="Homegrown Logo" class="logo">
+                <h1>homegrown</h1>
+                <p class="subtitle">Transforming surplus into soul food</p>
+                <p class="tagline">harvest, share, regenerate</p>
+            </div>
         </div>
-      </div>
-      <div class="gallery-card">
-        <div class="gallery-img">🏠</div>
-        <div class="gallery-content">
-          <span class="gallery-type">House Museum</span>
-          <h3>Ravenscar House Museum</h3>
-          <p>A "gallery / museum / home" displaying a significant private collection in an architecturally striking purpose-built building next to the Botanic Gardens.</p>
-          <div class="gallery-meta">
-            <span>📍 Near Botanic Gardens</span>
-            <span>🎫 Entry Fee</span>
-          </div>
+        <div class="scroll-indicator">
+            <div style="font-size: 2rem;">⤓</div>
         </div>
-      </div>
-      <div class="gallery-card">
-        <div class="gallery-img">⚡</div>
-        <div class="gallery-content">
-          <span class="gallery-type">Contemporary</span>
-          <h3>CoCA Toi Moroki</h3>
-          <p>From 1880 Canterbury Society of Arts to modernist Gloucester Street icon—now a refocused contemporary art space serving local artists via curated and open-call exhibitions.</p>
-          <div class="gallery-meta">
-            <span>📍 Gloucester Street</span>
-            <span>💰 Koha</span>
-          </div>
-        </div>
-      </div>
-      <div class="gallery-card">
-        <div class="gallery-img">🎭</div>
-        <div class="gallery-content">
-          <span class="gallery-type">Dealer Gallery</span>
-          <h3>The Central Art Gallery</h3>
-          <p>Dealer gallery for NZ contemporary artists in the Arts Centre precinct, featuring painting, sculpture and other contemporary practices.</p>
-          <div class="gallery-meta">
-            <span>📍 Arts Centre</span>
-            <span>💰 Free Entry</span>
-          </div>
-        </div>
-      </div>
-      <div class="gallery-card">
-        <div class="gallery-img">🖌️</div>
-        <div class="gallery-content">
-          <span class="gallery-type">Fine Art Gallery</span>
-          <h3>Chambers Art Gallery</h3>
-          <p>Fine art gallery with artist studios showing established and emerging NZ artists across painting, printmaking, sculpture, photography and installation.</p>
-          <div class="gallery-meta">
-            <span>📍 Central City</span>
-            <span>🎨 Artist Studios</span>
-          </div>
-        </div>
-      </div>
-      <div class="gallery-card">
-        <div class="gallery-img">🔥</div>
-        <div class="gallery-content">
-          <span class="gallery-type">Urban Art</span>
-          <h3>Fiksate Gallery</h3>
-          <p>Specialist in urban and street-inspired contemporary art with 20+ solo and group shows over eight years, featuring strong local and international artist mix.</p>
-          <div class="gallery-meta">
-            <span>📍 Central City</span>
-            <span>🌍 International Artists</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="street-art">
-    <div class="section-header">
-      <h2>Street Art & Public Art</h2>
-      <p>Christchurch's globally recognised outdoor gallery</p>
-    </div>
-    <div class="street-art-intro">
-      <h3>Watch This Space</h3>
-      <p>Charitable trust supporting Christchurch's street-art ecosystem through free resources and community programmes.</p>
-      <ul class="resource-list">
-        <li>Free interactive map of past and present murals and graffiti</li>
-        <li>Blog with editorials and artist interviews</li>
-        <li>Paid urban art tours funding free community resources</li>
-      </ul>
-      <p style="margin-top:1rem;font-size:0.9rem;color:var(--text-muted);">
-        Tip: Open their map before you head out, then use this guide to choose a neighbourhood trail.
-      </p>
-    </div>
-    <div class="story-grid">
-      <div class="story-card">
-        <h3>🎪 Flare Street Art Festival</h3>
-        <p>New street-art festival (2025) bringing artists from across NZ to the inner city to create new works, typically late February to early March.</p>
-      </div>
-      <div class="story-card">
-        <h3>🗿 SCAPE Public Art</h3>
-        <p>Non-profit producer of contemporary public art with over 200 temporary and 12 permanent works since 2000. The annual SCAPE Public Art Season features temporary installations across the city.</p>
-      </div>
-      <div class="story-card">
-        <h3>🚶 Self-Guided Trails</h3>
-        <p>Explore neighbourhood walking routes like the Central City Loop and Riverside & SALT District, using murals, sculptures and light works as anchors.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="studios">
-    <div class="section-header">
-      <h2>Studios, Schools & Creative Hubs</h2>
-      <p>The engine room of the Christchurch arts scene</p>
-    </div>
-    <div class="studio-list">
-      <div class="studio-item">
-        <div class="studio-icon">🎓</div>
-        <div class="studio-info">
-          <h4>Ilam School of Fine Arts</h4>
-          <p>Established 1882, NZ's oldest art school. Four-year Bachelor of Fine Arts with specialisations in design, moving image, painting, photography and sculpture. Boutique education with high staff–student ratios.</p>
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">Nourishing community, soil, and spirit</h2>
+            <p class="intro-text"><strong>We're not a business. We're a movement.</strong></p>
+            <div class="story-section">
+                <p>Homegrown is a regenerative, community-powered food initiative based in Ōtautahi. We rescue high-quality organic produce from Streamside Organics and turn it into nourishing meals.</p>
+            </div>
         </div>
-      </div>
-      <div class="studio-item">
-        <div class="studio-icon">📐</div>
-        <div class="studio-info">
-          <h4>Ara Institute of Canterbury</h4>
-          <p>Applied visual arts, visual communication and motion design programmes. Highly practical, industry-linked, preparing students for creative careers and independent practice.</p>
+    </section>
+
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">How It Works</h2>
+            <div class="columns">
+                <div class="box">
+                    <h4>Food Sovereignty</h4>
+                    <p>We rescue surplus organic produce that would otherwise go to waste</p>
+                </div>
+                <div class="box">
+                    <h4>Circular Economy</h4>
+                    <p>Transform surplus into nourishing community meals and products</p>
+                </div>
+                <div class="box">
+                    <h4>Mutual Aid</h4>
+                    <p>Building stronger, more resilient communities through shared food</p>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="studio-item">
-        <div class="studio-icon">🏛️</div>
-        <div class="studio-info">
-          <h4>The Arts Centre Artists' Studios</h4>
-          <p>Ground-floor studios open daily (10am–4pm) housing multiple resident artists. Watch work in progress and meet artists in the heritage precinct.</p>
+    </section>
+
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">Our Story</h2>
+            <div class="story-section">
+                <p>Homegrown started from a simple belief: that good food should nourish everyone, and nothing should go to waste. Based in Christchurch, we work directly with local organic farmers to rescue produce that's perfectly good but can't be sold due to cosmetic standards or overproduction.</p>
+                
+                <p>Every week, we transform this rescued food into:</p>
+                <ul>
+                    <li><strong>Nourishing stocks</strong> as a base for our soup</li>
+                    <li><strong>Hearty soups</strong> made with seasonal vegetables</li>
+                    <li><strong>Pantry fillers</strong> stocking community stores, where its needed most</li>
+                </ul>
+            </div>
         </div>
-      </div>
-      <div class="studio-item">
-        <div class="studio-icon">🧂</div>
-        <div class="studio-info">
-          <h4>Salt Lane Studios</h4>
-          <p>Collaborative creative hub on Tuam Street with resident artists, designers, photographers, festival producers and record labels sharing studio space.</p>
+    </section>
+
+    <section id="impact" class="content-section">
+        <div class="container">
+            <h2 class="section-title">Our Impact</h2>
+            <p class="intro-text">Rescued produce, in everyday terms — updated Tuesdays.</p>
+            <div class="columns">
+                <div class="box metric">
+                    <h4>🗑️ Green Bins Rescued</h4>
+                    <div class="value"><span id="binsTotal">-</span> bins</div>
+                    <div class="hint">Total to date</div>
+                </div>
+                <div class="box metric">
+                    <h4>⚖️ Weight Rescued</h4>
+                    <div class="value"><span id="kgTotal">-</span> kg</div>
+                    <div class="hint">Approximate total</div>
+                </div>
+            </div>
+            <p class="impact-note">*Assumption: <span id="assumptionFull">50 kg ≈ 1 full household green bin</span>. We'll refine as we weigh more.</p>
         </div>
-      </div>
-      <div class="studio-item">
-        <div class="studio-icon">☕</div>
-        <div class="studio-info">
-          <h4>XCHC – Exchange Christchurch</h4>
-          <p>Public creative hub and café with music studio, art studios and free hot-desking—designed specifically to support creative careers and projects.</p>
+    </section>
+
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">Where to Find Us</h2>
+            <div class="story-section">
+                <p>Join us at our soup cooks and pantry drops! Here's where you can find fresh, nourishing soup made from rescued organic produce:</p>
+                
+                <div class="location-card">
+                    <h4>🍲 Soup Drop & Pantry Stock 🥦</h4>
+                    <div class="location-details">
+                        <p><strong>Climate Action Campus</strong></p>
+                        <p>📍 24 Cowlishaw St, Christchurch</p>
+                        <p>🗓️ <em>12:00pm - 2:00pm on Tuesday the 9th of September</em></p>
+                        <p>♻️ <em>Koha welcome</em></p>
+                    </div>
+                </div>
+                
+                <p class="update-note"><em>More locations and dates will be added here as we expand our community reach. Stay tuned!</em></p>
+            </div>
         </div>
-      </div>
-      <div class="studio-item">
-        <div class="studio-icon">💚</div>
-        <div class="studio-info">
-          <h4>Ōtautahi Creative Spaces</h4>
-          <p>Studio programmes tailored for people with mental distress and trauma, focusing on accessibility, community and creative wellbeing, reaching Māori, Pacific, Muslim and Rainbow communities.</p>
+    </section>
+
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">Our Wish List</h2>
+            <div class="story-section">
+                <p>Help us grow from a small-scale operation to something larger and more impactful! We're looking for:</p>
+                
+                <div class="wishlist-grid">
+                    <div class="wish-item">
+                        <h4>🔧 Equipment Needs</h4>
+                        <ul>
+                            <li>Large colander/strainer</li>
+                            <li>Large stainless steel pots</li>
+                            <li>Large ladles</li>
+                            <li>Large wooden spoons</li>
+                            <li>A1 printed sign</li>
+                            <li>Refrigerator space to store vegetables</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="wish-item">
+                        <h4>🤝 Partnership & Expertise</h4>
+                        <ul>
+                            <li>Business mentorship to scale our impact</li>
+                            <li>Development/fundraising guru</li>
+                            <li>Commercial kitchen space access</li>
+                            <li>Food safety & handling expertise</li>
+                            <li>Logistics and distribution support</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <p>Have something to contribute or know someone who might? We'd love to hear from you!</p>
+            </div>
         </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="events">
-    <div class="section-header">
-      <h2>Festivals & Events</h2>
-      <p>Annual highlights and regular programming</p>
-    </div>
-    <div class="events-timeline">
-      <div class="event-item">
-        <span class="event-date">Annual</span>
-        <h4>SCAPE Public Art Season</h4>
-        <p>Annual public art season with temporary installations across the city—key for contemporary outdoor work and site-specific commissions.</p>
-      </div>
-      <div class="event-item">
-        <span class="event-date">Feb–Mar</span>
-        <h4>Flare Street Art Festival</h4>
-        <p>Street-art festival bringing artists from across Aotearoa to create new works in the inner city. Ideal time to plan a mural-focused weekend.</p>
-      </div>
-      <div class="event-item">
-        <span class="event-date">Annual</span>
-        <h4>The Christchurch Art Show</h4>
-        <p>Large commercial art fair with hundreds of artists and thousands of works. “Art for everyone” with prices from under $200 to over $20k, plus national art awards.</p>
-      </div>
-      <div class="event-item">
-        <span class="event-date">Ongoing</span>
-        <h4>The Physics Room Programme</h4>
-        <p>Rolling exhibitions, talks, screenings and Artist Life School sessions. A good place to encounter experimental contemporary art and artist talks year-round.</p>
-      </div>
-      <div class="event-item">
-        <span class="event-date">Seasonal</span>
-        <h4>Open Studios & Local Trails</h4>
-        <p>Look out for open-studio weekends and neighbourhood arts trails where artists open their workspaces to the public—perfect for meeting makers and buying work directly.</p>
-      </div>
-    </div>
-  </section>
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">Want to Help?</h2>
+            <div class="story-section">
+                <p>We're always looking for passionate people to join our movement:</p>
+                <ul>
+                    <li><strong>Volunteers</strong> to help with food prep and distribution</li>
+                    <li><strong>Distribution hubs</strong> to get the food to the world</li>
+                    <li><strong>Community supporters</strong> to spread the word</li>
+                </ul>
+            </div>
+        </div>
+    </section>
 
-  <section id="community">
-    <div class="section-header">
-      <h2>Community & Access</h2>
-      <p>Art as connection, wellbeing and everyday life</p>
-    </div>
-    <div class="community-grid">
-      <div class="community-card">
-        <h4>Art & Wellbeing</h4>
-        <p>Ōtautahi’s arts strategy sees creativity as essential to mental health and community resilience. Many spaces offer low-cost or free events, workshops and inclusive programmes.</p>
-      </div>
-      <div class="community-card">
-        <h4>Accessible Spaces</h4>
-        <p>Major institutions and many galleries are wheelchair accessible, with family-friendly facilities, free entry or koha. Check individual venues for quiet hours and sensory-friendly events.</p>
-      </div>
-      <div class="community-card">
-        <h4>Pop-Ups & Vacant Spaces</h4>
-        <p>Space-brokering initiatives connect creatives with empty shops and sites, turning gaps in the city into temporary galleries, art windows and performance spaces.</p>
-      </div>
-      <div class="community-card">
-        <h4>Guided vs Self-Guided</h4>
-        <p>Choose between guided tours (for deep dives into history and context) or DIY trails using maps and this guide. Both work well for solo travellers, couples and small groups.</p>
-      </div>
-    </div>
-  </section>
+    <section class="contact-section">
+        <div class="container">
+            <h2 class="section-title">Contact Us</h2>
+            <p>Ready to get involved or learn more?</p>
+            
+            <div class="contact-links">
+                <a href="mailto:homegrownorganicsnz@gmail.com" class="contact-link">Email Us</a>
+                <a href="https://www.facebook.com/profile.php?id=61576887574406" class="contact-link">Facebook</a>
+                <a href="https://www.instagram.com/home_grownnz?igsh=YW1mdXhvemc3NXVt&utm_source=qr" target="_blank" class="contact-link">Instagram</a>
+            </div>
+            
+            <p><strong>Location:</strong> Ōtautahi, Aotearoa (Christchurch, New Zealand)</p>
+            
+            <p class="footer-tagline">Local food, shared roots. 🌱</p>
+        </div>
+    </section>
 
-  <section id="resources">
-    <div class="section-header">
-      <h2>Plan Your Visit & Go Deeper</h2>
-      <p>Practical tips and links to help you get the most from Ōtautahi’s arts scene</p>
-    </div>
-    <div class="resources-grid">
-      <div class="resource-card">
-        <h4>Visitor Essentials</h4>
-        <ul>
-          <li>Most galleries are open Tue–Sun; Mondays can be quiet—check hours before you go.</li>
-          <li>Central city galleries and public art are walkable; add a bike or scooter for river and suburb trails.</li>
-          <li>Combine daytime gallery visits with evening theatre, live music or film at the Arts Centre.</li>
-          <li>Pack for changeable weather—many murals are outdoors and best enjoyed slowly.</li>
-        </ul>
-      </div>
-      <div class="resource-card">
-        <h4>Online Maps & Guides</h4>
-        <ul>
-          <li>Street art map: use local mural maps to build your own walking route.</li>
-          <li>Public art: check SCAPE’s website for permanent works and seasonal installations.</li>
-          <li>Institutional listings: Christchurch Art Gallery, CoCA and the Arts Centre publish current exhibitions and events.</li>
-          <li>Event listings: search “Christchurch art events” or local gig guides for up-to-date openings and festivals.</li>
-        </ul>
-      </div>
-      <div class="resource-card">
-        <h4>For Artists & Creatives</h4>
-        <ul>
-          <li>Look up Toi Ōtautahi for local arts strategy, grants and sector news.</li>
-          <li>Follow SCAPE, Watch This Space, CoCA and The Physics Room for open calls and opportunities.</li>
-          <li>Explore studio hubs like XCHC, Salt Lane Studios and Arts Centre studios for coworking and collaboration.</li>
-          <li>Considering study? Compare programmes at Ilam School of Fine Arts and Ara Institute of Canterbury.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
+    <script>
+        const impact = {
+            greenBinsTotal: 13,
+            kgPerGreenBin: 50
+        };
 
-  <footer>
-    <div class="footer-content">
-      <div class="footer-section">
-        <h4>About This Guide</h4>
-        <p>A visitor-friendly overview of galleries, street art, studios and creative spaces in Ōtautahi Christchurch.</p>
-        <p>Use it as a starting point, then follow your curiosity down side streets and into back rooms.</p>
-      </div>
-      <div class="footer-section">
-        <h4>How to Use It</h4>
-        <p>➤ Start with the Galleries section to anchor your visit.</p>
-        <p>➤ Add a street-art trail and one creative hub or studio stop.</p>
-        <p>➤ Check Events before you travel for festivals and openings.</p>
-      </div>
-      <div class="footer-section">
-        <h4>Future Updates</h4>
-        <p>This scene is always shifting. Check venue websites and socials for the latest exhibitions, hours and events.</p>
-        <p>Support local artists by buying work, sharing their projects and treating every space with care.</p>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      © <span id="year"></span> Ōtautahi Christchurch Arts Guide. All rights reserved.
-    </div>
-  </footer>
+        document.addEventListener('DOMContentLoaded', function() {
+            const kgTotal = impact.greenBinsTotal * impact.kgPerGreenBin;
+            
+            document.getElementById('binsTotal').textContent = impact.greenBinsTotal.toLocaleString();
+            document.getElementById('kgTotal').textContent = kgTotal.toLocaleString();
+            document.getElementById('assumptionFull').textContent = impact.kgPerGreenBin + ' kg ≈ 1 full household green bin';
+        });
+    </script>
 
-  <script>
-    // Mobile nav toggle
-    const mobileMenu = document.getElementById('mobileMenu');
-    const navLinks = document.getElementById('navLinks');
-
-    mobileMenu.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
-    });
-
-    // Close mobile menu on link click
-    navLinks.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        navLinks.classList.remove('active');
-      });
-    });
-
-    // Current year in footer
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
 </body>
 </html>
