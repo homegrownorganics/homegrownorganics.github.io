@@ -1,0 +1,23 @@
+<!--
+  listing.html: Used for any individual listing (e.g., a farm, market, store, etc.).
+  Displays all data fields and content in a consistent format.
+-->
+{% extends "default" %}
+{% block content %}
+<article class="listing-detail">
+  <h1>{{ page.title }}</h1>
+  <ul class="listing-summary">
+    {% if page.country %}<li><b>Country:</b> {{ page.country }}</li>{% endif %}
+    {% if page.region %}<li><b>Region:</b> {{ page.region }}</li>{% endif %}
+    {% if page.city %}<li><b>City:</b> {{ page.city }}</li>{% endif %}
+    {% if page.practices %}<li><b>Practices:</b> {{ page.practices | join: ', ' }}</li>{% endif %}
+    {% if page.products %}<li><b>Products:</b> {{ page.products | join: ', ' }}</li>{% endif %}
+    {%- if page.sources %}<li><b>Sources:</b> {{ page.sources | join: ', '}}</li>{% endif %}
+    {%- if page.vendors %}<li><b>Vendors:</b> {{ page.vendors | join: ', '}}</li>{% endif %}
+    {%- if page.supplies_to %}<li><b>Supplies To:</b> {{ page.supplies_to | join: ', '}}</li>{% endif %}
+  </ul>
+  <div class="listing-description">
+    {{ content }}
+  </div>
+</article>
+{% endblock %}
