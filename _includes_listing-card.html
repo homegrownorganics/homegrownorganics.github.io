@@ -1,0 +1,22 @@
+<!--
+  listing-card.html: Renders a summary card for a listing.
+  Parameters: item (record), type (collection name)
+-->
+<div class="listing-card">
+  <h3><a href="{{ item.url }}">{{ item.title }}</a></h3>
+  <p>
+    <strong>{{ type | capitalize }}</strong>
+    {% if item.city or item.region %}
+      •
+      {% if item.city %}{{ item.city }}{% endif %}{% if item.region %}, {{ item.region }}{% endif %}
+    {% endif %}
+  </p>
+  {% if item.practices %}
+    <p class="practices">
+      <span class="tag-label">Practices:</span>
+      {% for p in item.practices %}
+        <span class="tag">{{ p }}</span>
+      {% endfor %}
+    </p>
+  {% endif %}
+</div>
